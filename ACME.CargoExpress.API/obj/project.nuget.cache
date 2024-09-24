@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "uV0vgORJ0WBS7NgwzROqNw1UDzAlrZbOd/OcSMtxEgumyIFC7qCCn1EXZjGlhIarYD7kavvN7dYblCurEkUfWg==",
+  "dgSpecHash": "9nFi0TmFUGjmMKR2+3yB4X1UZxzQ6BLmwNMMiroXxkIhlN+JswzFqWVMMqe3StkMFgfmWvseKMT3J8yFQxSrqA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Adolfo PC\\Documents\\GitHub\\CargoExpress-Backend\\ACME.CargoExpress.API\\ACME.CargoExpress.API.csproj",
+  "projectFilePath": "C:\\Users\\Adolfo PC\\Documents\\GitHub\\cargoexpress\\ACME.CargoExpress.API\\ACME.CargoExpress.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Adolfo PC\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\Adolfo PC\\.nuget\\packages\\bouncycastle.cryptography\\2.3.1\\bouncycastle.cryptography.2.3.1.nupkg.sha512",
