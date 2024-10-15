@@ -12,8 +12,8 @@ namespace CargoExpress.UnitTests
             // Arrange
             List<Driver> drivers = new List<Driver>
             {
-                new Driver("Juan Perez", "12345678", "Brevete A1", "955123456"),
-                new Driver("Pedro Sanchez", "87654321", "Brevete A2", "955765432")
+                new Driver("Juan Perez", "12345678", "Brevete A1", "955123456", 1),
+                new Driver("Pedro Sanchez", "87654321", "Brevete A2", "955765432", 1)
             };
             var mockDriverRepository = new Mock<IDriverRepository>();
             mockDriverRepository.Setup(repo => repo.ListAsync()).ReturnsAsync(drivers);
@@ -33,7 +33,7 @@ namespace CargoExpress.UnitTests
             // Arrange
             int validId = 1;
             int invalidId = 0;
-            var driver = new Driver("Juan Perez", "12345678", "Brevete A1", "955123456");
+            var driver = new Driver("Juan Perez", "12345678", "Brevete A1", "955123456", 1);
             var mockDriverRepository = new Mock<IDriverRepository>();
             mockDriverRepository.Setup(repo => repo.FindByIdAsync(validId).Result).Returns(driver);
             mockDriverRepository.Setup(repo => repo.FindByIdAsync(invalidId).Result).Returns((Driver)null);
@@ -53,7 +53,7 @@ namespace CargoExpress.UnitTests
         public async Task Add_Driver_Success()
         {
             // Arrange
-            var driver = new Driver("Juan Perez", "12345678", "Brevete A1", "955123456");
+            var driver = new Driver("Juan Perez", "12345678", "Brevete A1", "955123456", 1);
             var mockDriverRepository = new Mock<IDriverRepository>();
             mockDriverRepository.Setup(repo => repo.AddAsync(driver)).Returns(Task.CompletedTask);
 
@@ -68,7 +68,7 @@ namespace CargoExpress.UnitTests
         public void Update_Driver_Success()
         {
             // Arrange
-            var driver = new Driver("Juan Perez", "12345678", "Brevete A1", "955123456");
+            var driver = new Driver("Juan Perez", "12345678", "Brevete A1", "955123456", 1);
             var mockDriverRepository = new Mock<IDriverRepository>();
             mockDriverRepository.Setup(repo => repo.Update(driver));
 

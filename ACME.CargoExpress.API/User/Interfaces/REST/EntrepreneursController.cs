@@ -1,4 +1,5 @@
 ﻿using ACME.CargoExpress.API.Registration.Domain.Model.Queries;
+using ACME.CargoExpress.API.Registration.Domain.Repositories;
 using ACME.CargoExpress.API.Registration.Domain.Services;
 using ACME.CargoExpress.API.Registration.Interfaces.REST.Transform;
 using ACME.CargoExpress.API.User.Domain.Model.Queries;
@@ -12,7 +13,7 @@ namespace ACME.CargoExpress.API.User.Interfaces.REST;
 [ApiController]
 [Route("api/v1/[controller]")]
 public class EntrepreneursController (IEntrepreneurQueryService entrepreneurQueryService, IEntrepreneurCommandService entrepreneurCommandService,
-    ITripQueryService tripQueryService) : ControllerBase
+    ITripQueryService tripQueryService, IVehicleRepository vehicleRepository, IDriverRepository driverRepository) : ControllerBase
 {
     [HttpPost]
     public async Task<IActionResult> CreateEntrepreneur([FromBody] CreateEntrepreneurResource createEntrepreneurResource)
@@ -83,24 +84,25 @@ public class EntrepreneursController (IEntrepreneurQueryService entrepreneurQuer
     }
 
     [HttpGet("{entrepreneurId}/drivers")]
-    public async Task<IActionResult> GetDrivers([FromServices] ITripQueryService tripQueryService, int entrepreneurId)
+    public async Task<IActionResult> GetDrivers([FromRoute] int entrepreneurId)
     {
-        var drivers = await tripQueryService.Handle(new GetDriversByEntrepreneurIdQuery(entrepreneurId));
+        var drivers = await driverRepository.FindByEntrepreneurIdAsync(entrepreneurId);
         var driverResources = drivers.Select(d => new 
         {
             d.Id,
             d.Name,
             d.Dni,
             d.License,
-            d.ContactNumber
+            d.ContactNumber,
+            d.EntrepreneurId
         });
         return Ok(driverResources);
     }
 
     [HttpGet("{entrepreneurId}/vehicles")]
-    public async Task<IActionResult> GetVehicles([FromServices] ITripQueryService tripQueryService, int entrepreneurId)
+    public async Task<IActionResult> GetVehicles([FromRoute] int entrepreneurId)
     {
-        var vehicles = await tripQueryService.Handle(new GetVehiclesByEntrepreneurIdQuery(entrepreneurId));
+        var vehicles = await vehicleRepository.FindByEntrepreneurIdAsync(entrepreneurId);
         var vehicleResources = vehicles.Select(v => new
         {
             v.Id,
@@ -108,7 +110,8 @@ public class EntrepreneursController (IEntrepreneurQueryService entrepreneurQuer
             v.Plate,
             v.TractorPlate,
             v.MaxLoad,
-            v.Volume
+            v.Volume,
+            v.EntrepreneurId
         });
         return Ok(vehicleResources);
     }

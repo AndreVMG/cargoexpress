@@ -15,8 +15,8 @@ public class TripUnitTest
     {
         // Arrange
         
-        var driver = new Driver("Juan Perez", "12345678", "Brevete A1", "955123456");
-        var vehicle = new Vehicle("Volkswagen", "A1B-234", "A1B-235", 5000, 35);
+        var driver = new Driver("Juan Perez", "12345678", "Brevete A1", "955123456", 1);
+        var vehicle = new Vehicle("Volkswagen", "A1B-234", "A1B-235", 5000, 35, 1);
         var userClient = new User("juan@gmail.com", "contra123");
         var userEntrepreneur = new User("lucho@gmail.com", "contra123");
         var client = new Client("Juan Perez", "986559113", "20000000001", "Av. Lima 123", 1, userClient);
@@ -52,8 +52,8 @@ public class TripUnitTest
         int validId = 1;
         int invalidId = 0;
 
-        var driver = new Driver("Juan Perez", "12345678", "Brevete A1", "955123456");
-        var vehicle = new Vehicle("Volkswagen", "A1B-234", "A1B-235", 5000, 35);
+        var driver = new Driver("Juan Perez", "12345678", "Brevete A1", "955123456", 1);
+        var vehicle = new Vehicle("Volkswagen", "A1B-234", "A1B-235", 5000, 35, 1);
         var userClient = new User("juan@gmail.com", "contra123");
         var userEntrepreneur = new User("lucho@gmail.com", "contra123");
         var client = new Client("Juan Perez", "986559113", "20000000001", "Av. Lima 123", 1, userClient);
@@ -83,8 +83,8 @@ public class TripUnitTest
     public async Task Add_Trip_Success()
     {
         //Arrange
-        var driver = new Driver("Juan Perez", "12345678", "Brevete A1", "955123456");
-        var vehicle = new Vehicle("Volkswagen", "A1B-234", "A1B-235", 5000, 35);
+        var driver = new Driver("Juan Perez", "12345678", "Brevete A1", "955123456", 1);
+        var vehicle = new Vehicle("Volkswagen", "A1B-234", "A1B-235", 5000, 35, 1);
        var userClient = new User("juan@gmail.com", "contra123");
         var userEntrepreneur = new User("lucho@gmail.com", "contra123");
         var client = new Client("Juan Perez", "986559113", "20000000001", "Av. Lima 123", 1, userClient);
@@ -109,8 +109,8 @@ public class TripUnitTest
     public void Update_Trip_Success()
     {
         // Arrange
-        var driver = new Driver("Juan Perez", "12345678", "Brevete A1", "955123456");
-        var vehicle = new Vehicle("Volkswagen", "A1B-234", "A1B-235", 5000, 35);
+        var driver = new Driver("Juan Perez", "12345678", "Brevete A1", "955123456", 1);
+        var vehicle = new Vehicle("Volkswagen", "A1B-234", "A1B-235", 5000, 35, 1);
         var userClient = new User("juan@gmail.com", "contra123");
         var userEntrepreneur = new User("lucho@gmail.com", "contra123");
         var client = new Client("Juan Perez", "986559113", "20000000001", "Av. Lima 123", 1, userClient);

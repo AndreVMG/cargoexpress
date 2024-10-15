@@ -35,7 +35,7 @@ public class VehiclesController(IVehicleCommandService vehicleCommandService, IV
             return BadRequest(new { message = "An error occurred while creating the vehicle.", details = exceptionDetails });
         }
     }
-    
+
     [HttpPut("{vehicleId}")]
     public async Task<IActionResult> UpdateVehicle([FromBody] UpdateVehicleResource updateVehicleResource, [FromRoute] int vehicleId)
     {

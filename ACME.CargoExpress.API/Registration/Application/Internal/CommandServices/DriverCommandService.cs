@@ -3,15 +3,22 @@ using ACME.CargoExpress.API.Registration.Domain.Model.Entities;
 using ACME.CargoExpress.API.Registration.Domain.Repositories;
 using ACME.CargoExpress.API.Registration.Domain.Services;
 using ACME.CargoExpress.API.Shared.Domain.Repositories;
+using ACME.CargoExpress.API.User.Domain.Repositories;
 
 namespace ACME.CargoExpress.API.Registration.Application.Internal.CommandServices;
 
-public class DriverCommandService(IDriverRepository driverRepository, IUnitOfWork unitOfWork)
+public class DriverCommandService(IDriverRepository driverRepository,IEntrepreneurRepository entrepreneurRepository, IUnitOfWork unitOfWork)
     : IDriverCommandService
 {
     public async Task<Driver?> Handle(CreateDriverCommand command)
     {
-        var driver = new Driver(command.Name, command.Dni, command.License, command.ContactNumber);
+        var entrepreneur = await entrepreneurRepository.FindByIdAsync(command.EntrepreneurId);
+        if (entrepreneur == null)
+        {
+            throw new ArgumentException("EntrepreneurId not found.");
+        }
+        
+        var driver = new Driver(command.Name, command.Dni, command.License, command.ContactNumber, command.EntrepreneurId);
         await driverRepository.AddAsync(driver);
         await unitOfWork.CompleteAsync();
         return driver;

@@ -27,6 +27,10 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
     public DbSet<Evidence> Evidences { get; set; }
     public DbSet<OngoingTrip> OngoingTrips { get; set; }
     public DbSet<Alert> Alerts { get; set; }
+    
+    public DbSet<Vehicle> Vehicles { get; set; }
+    
+    public DbSet<Driver> Drivers { get; set; }
 
 
     protected override void OnModelCreating(ModelBuilder builder)

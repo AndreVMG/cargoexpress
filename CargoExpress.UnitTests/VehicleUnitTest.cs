@@ -13,8 +13,8 @@ public class VehicleUnitTest
         // Arrange
         List<Vehicle> vehicles = new List<Vehicle>
         {
-            new Vehicle("Volkswagen", "A1B-234", "A1B-235", 5000, 35),
-            new Vehicle("Toyota", "B2C-345", "B2C-346", 6000, 40)
+            new Vehicle("Volkswagen", "A1B-234", "A1B-235", 5000, 35, 1),
+            new Vehicle("Toyota", "B2C-345", "B2C-346", 6000, 40, 2)
         };
         var vehicleDataMock = new Mock<IVehicleRepository>();
         vehicleDataMock.Setup(x => x.ListAsync().Result).Returns(vehicles);
@@ -34,7 +34,7 @@ public class VehicleUnitTest
         // Arrange
         int validId = 1;
         int invalidId = 0;
-        Vehicle vehicle = new Vehicle("Volkswagen", "A1B-234", "A1B-235", 5000, 35);
+        Vehicle vehicle = new Vehicle("Volkswagen", "A1B-234", "A1B-235", 5000, 35, 1);
         var vehicleDataMock = new Mock<IVehicleRepository>();
         vehicleDataMock.Setup(x => x.FindByIdAsync(validId).Result).Returns(vehicle);
         vehicleDataMock.Setup(x => x.FindByIdAsync(invalidId).Result).Returns((Vehicle)null);
@@ -55,7 +55,7 @@ public class VehicleUnitTest
     {
         //Arrange
        
-        Vehicle vehicle = new Vehicle("Volkswagen", "A1B-234", "A1B-235", 5000, 35);
+        Vehicle vehicle = new Vehicle("Volkswagen", "A1B-234", "A1B-235", 5000, 35, 1);
         var vehicleDataMock = new Mock<IVehicleRepository>();
         vehicleDataMock.Setup(x => x.AddAsync(vehicle)).Returns(Task.CompletedTask);
         //Act
@@ -68,7 +68,7 @@ public class VehicleUnitTest
     public void Update_Vehicle_Success()
     {
         // Arrange
-        Vehicle vehicle = new Vehicle("Volkswagen", "A1B-234", "A1B-235", 5000, 35);
+        Vehicle vehicle = new Vehicle("Volkswagen", "A1B-234", "A1B-235", 5000, 35, 1);
         var vehicleDataMock = new Mock<IVehicleRepository>();
 
         // Update the vehicle properties

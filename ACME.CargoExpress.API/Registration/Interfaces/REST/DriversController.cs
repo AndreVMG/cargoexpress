@@ -32,7 +32,7 @@ public class DriversController(IDriverCommandService driverCommandService, IDriv
                 InnerExceptionStackTrace = e.InnerException?.StackTrace
             };
             Console.WriteLine(exceptionDetails);
-            return BadRequest(new { message = "An error occurred while updating the driver.", details = exceptionDetails });
+            return BadRequest(new { message = "An error occurred while creating the driver.", details = exceptionDetails });
         }
     }
     
@@ -49,8 +49,15 @@ public class DriversController(IDriverCommandService driverCommandService, IDriv
         }
         catch (Exception e)
         {
-            Console.WriteLine(e);
-            return BadRequest(new { message = "An error occurred while updating the driver. " + e.Message });
+            var exceptionDetails = new
+            {
+                e.Message,
+                e.StackTrace,
+                InnerExceptionMessage = e.InnerException?.Message,
+                InnerExceptionStackTrace = e.InnerException?.StackTrace
+            };
+            Console.WriteLine(exceptionDetails);
+            return BadRequest(new { message = "An error occurred while updating the driver.", details = exceptionDetails });
         }
     }
     

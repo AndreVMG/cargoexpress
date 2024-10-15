@@ -3,15 +3,22 @@ using ACME.CargoExpress.API.Registration.Domain.Model.Entities;
 using ACME.CargoExpress.API.Registration.Domain.Repositories;
 using ACME.CargoExpress.API.Registration.Domain.Services;
 using ACME.CargoExpress.API.Shared.Domain.Repositories;
+using ACME.CargoExpress.API.User.Domain.Repositories;
 
 namespace ACME.CargoExpress.API.Registration.Application.Internal.CommandServices;
 
-public class VehicleCommandService(IVehicleRepository vehicleRepository, IUnitOfWork unitOfWork)
+public class VehicleCommandService(IVehicleRepository vehicleRepository, IEntrepreneurRepository entrepreneurRepository,IUnitOfWork unitOfWork)
     : IVehicleCommandService
 {
     public async Task<Vehicle?> Handle(CreateVehicleCommand command)
     {
-        var vehicle = new Vehicle(command.Model, command.Plate, command.TractorPlate, command.MaxLoad, command.Volume);
+        var entrepreneur = await entrepreneurRepository.FindByIdAsync(command.EntrepreneurId);
+        if (entrepreneur == null)
+        {
+            throw new ArgumentException("EntrepreneurId not found.");
+        }
+
+        var vehicle = new Vehicle(command.Model, command.Plate, command.TractorPlate, command.MaxLoad, command.Volume, command.EntrepreneurId);
         await vehicleRepository.AddAsync(vehicle);
         await unitOfWork.CompleteAsync();
         return vehicle;
@@ -30,6 +37,7 @@ public class VehicleCommandService(IVehicleRepository vehicleRepository, IUnitOf
         vehicle.TractorPlate = command.TractorPlate;
         vehicle.MaxLoad = command.MaxLoad;
         vehicle.Volume = command.Volume;
+        vehicle.EntrepreneurId = command.EntrepreneurId;
         
         await unitOfWork.CompleteAsync();
         return vehicle;
