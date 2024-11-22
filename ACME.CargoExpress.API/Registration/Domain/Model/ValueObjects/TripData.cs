@@ -2,9 +2,9 @@
 
 namespace ACME.CargoExpress.API.Registration.Domain.Model.ValueObjects;
 
-public record TripData(string LoadLocation, DateTime LoadDate, string UnloadLocation, DateTime UnloadDate)
+public record TripData(string LoadLocation, string LoadDate, string UnloadLocation, string UnloadDate)
 {
-    public TripData() : this(string.Empty, new DateTime(), string.Empty, new DateTime())
+    public TripData() : this(string.Empty, string.Empty, string.Empty, string.Empty)
     {
     }
 }

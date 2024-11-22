@@ -20,7 +20,7 @@ public class Trip
     }
     
     
-    public Trip(string name, string type, int weight, string loadLocation, DateTime loadDate, string unloadLocation, DateTime unloadDate, 
+    public Trip(string name, string type, int weight, string loadLocation, string loadDate, string unloadLocation, string unloadDate, 
         int driverId, int vehicleId, int clientId, int entrepreneurId, Driver driver, Vehicle vehicle, Client client, Entrepreneur entrepreneur)
     {
         Name = new Name(name);

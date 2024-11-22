@@ -25,12 +25,12 @@ public class TripUnitTest
         var trips = new List<Trip>
         {
             new Trip("Viaje 1", "Tecnologia", 500, 
-                "Av. San Borja Sur", new DateTime(2024, 07, 05), 
-                "Av. San Borja Norte", new DateTime(2024, 07, 06), 
+                "Av. San Borja Sur", "2024-07-05", 
+                "Av. San Borja Norte", "2024-07-06", 
                 1, 1, 1, 1, driver, vehicle, client, entrepreneur),
             new Trip("Viaje 2", "Alimentos", 1000, 
-                "Calle Las Begonias 730", new DateTime(2024, 07, 08), 
-                "Av. Vicus I-92", new DateTime(2024, 08, 09), 
+                "Calle Las Begonias 730", "2024-08-08", 
+                "Av. Vicus I-92", "2024-08-09", 
                 1, 1, 1, 1, driver, vehicle, client, entrepreneur),
         };
         var mockTripRepository = new Mock<ITripRepository>();
@@ -60,8 +60,8 @@ public class TripUnitTest
         var entrepreneur = new Entrepreneur("Lucho Vega", "986559213", "20000000002", "Av. Peru 123", "logo.com/image.jpeg", 1, userEntrepreneur);
 
         var trip = new Trip("Viaje 1", "Tecnologia", 500, 
-            "Av. San Borja Sur", new DateTime(2024, 07, 05), 
-            "Av. San Borja Norte", new DateTime(2024, 07, 06), 
+            "Av. San Borja Sur", "2024-07-05", 
+            "Av. San Borja Norte", "2024-07-06", 
             1, 1, 1, 1, driver, vehicle, client, entrepreneur);
         
         var mockTripRepository = new Mock<ITripRepository>();
@@ -91,8 +91,8 @@ public class TripUnitTest
         var entrepreneur = new Entrepreneur("Lucho Vega", "986559213", "20000000002", "Av. Peru 123", "logo.com/image.jpeg", 1, userEntrepreneur);
         
         var trip = new Trip("Viaje 1", "Tecnologia", 500, 
-            "Av. San Borja Sur", new DateTime(2024, 07, 05), 
-            "Av. San Borja Norte", new DateTime(2024, 07, 06), 
+            "Av. San Borja Sur", "2024-07-05", 
+            "Av. San Borja Norte", "2024-07-06", 
             1, 1, 1, 1, driver, vehicle, client, entrepreneur);
         
         var mockTripRepository = new Mock<ITripRepository>();
@@ -117,8 +117,8 @@ public class TripUnitTest
         var entrepreneur = new Entrepreneur("Lucho Vega", "986559213", "20000000002", "Av. Peru 123", "logo.com/image.jpeg", 1, userEntrepreneur);
 
         var trip = new Trip("Viaje 1", "Tecnologia", 500,
-            "Av. San Borja Sur", new DateTime(2024, 07, 05),
-            "Av. San Borja Norte", new DateTime(2024, 07, 06),
+            "Av. San Borja Sur", "2024-07-05",
+            "Av. San Borja Norte", "2024-07-06",
             1, 1, 1, 1, driver, vehicle, client, entrepreneur);
 
         var mockTripRepository = new Mock<ITripRepository>();
